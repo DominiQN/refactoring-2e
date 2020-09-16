@@ -1,12 +1,10 @@
-/**
- * @param {{ customer: string, performances: { playID: string, audience: number }[]}} invoice
- * @param {{ [play: string]: { name: string, type: 'tragedy'|'comedy' }}} plays
- */
-export function statement(invoice, plays) {
+import { Invoice, Plays } from "./types.ts";
+
+export function statement(invoice: Invoice, plays: Plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
-  const format = (amount) => `${amount}원`;
+  const format = (amount: number) => `${amount}원`;
 
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];

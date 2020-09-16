@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { statement } from "./statement.js";
+import { statement } from "./statement.ts";
 
 const expected = `청구 내역 (고객명: BigCo)
 Hamlet: 650원 (55석)
