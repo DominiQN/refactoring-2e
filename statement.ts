@@ -7,7 +7,7 @@ export function statement(invoice: Invoice, plays: Plays) {
   const format = (amount: number) => `${amount}원`;
 
   for (let performance of invoice.performances) {
-    const play = plays[performance.playID];
+    const play = playFor(performance);
     let thisAmount = amountFor(performance, play);
 
     volumeCredits += Math.max(performance.audience - 30, 0);
@@ -48,5 +48,9 @@ export function statement(invoice: Invoice, plays: Plays) {
     }
 
     return amount;
+  }
+
+  function playFor(performance: Performance) {
+    return plays[performance.playID];
   }
 }
