@@ -7,15 +7,14 @@ export function statement(invoice: Invoice, plays: Plays) {
   const format = (amount: number) => `${amount}원`;
 
   for (let performance of invoice.performances) {
-    const play = playFor(performance);
-    let thisAmount = amountFor(performance, play);
+    let thisAmount = amountFor(performance, playFor(performance));
 
     volumeCredits += Math.max(performance.audience - 30, 0);
-    if (play.type === "comedy") {
+    if (playFor(performance).type === "comedy") {
       volumeCredits += Math.floor(performance.audience / 5);
     }
 
-    result += `${play.name}: ${
+    result += `${playFor(performance).name}: ${
       format(thisAmount / 100)
     } (${performance.audience}석)\n`;
     totalAmount += thisAmount;
